@@ -1,24 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>URL Redirect</title>
-    </head>
+<html>
     <body>
         <script>
             document.addEventListener("DOMContentLoaded", () => {
-                const params = new URLSearchParams(window.location.search);
-                const url = params.get("XD");
-
-                if (url) {
-                    window.location.href = url;
-                } 
+                const e = new URLSearchParams(window.location.search).get("XD");
+                e && (window.location.href = e),
+                    setTimeout(() => {
+                        window.close();
+                    }, 6e3);
             });
-			setTimeout(
-				function() {
-					window.close();
-				}, 6000
-			)
         </script>
     </body>
 </html>
