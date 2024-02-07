@@ -10,18 +10,17 @@
             document.addEventListener("DOMContentLoaded", () => {
                 const params = new URLSearchParams(window.location.search);
                 const dl = params.get("dl");
-                const fn = params.get("fn");
                 const url = params.get("XD");
 
                 if (url) {
-                    if (dl === "1") {
+                    if (dl) {
                         fetch(url)
                             .then((response) => response.blob())
                             .then((blob) => {
                                 const url = URL.createObjectURL(blob);
                                 const a = document.createElement("a");
                                 a.href = url;
-                                a.download = fn || "DL";
+                                a.download = dl
                                 a.click();
                             });
                     } else window.location.href = url;
