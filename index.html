@@ -1,1 +1,35 @@
-<script> document.addEventListener("DOMContentLoaded", () => { const params = new URLSearchParams(window.location.search); const url = params.get("XD"); if (url) { window.location.href = url; } }); setTimeout( function() { window.close(); }, 6000 ) </script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const params = new URLSearchParams(window.location.search);
+                const dl = params.get("dl");
+                const fn = params.get("fn");
+                const url = params.get("XD");
+
+                if (url) {
+                    if (dl === "1") {
+                        fetch(url)
+                            .then((response) => response.blob())
+                            .then((blob) => {
+                                const url = URL.createObjectURL(blob);
+                                const a = document.createElement("a");
+                                a.href = url;
+                                a.download = fn || "DL";
+                                a.click();
+                            });
+                    } else window.location.href = url;
+                }
+            });
+            setTimeout(function () {
+                window.close();
+            }, 6000);
+        </script>
+    </body>
+</html>
